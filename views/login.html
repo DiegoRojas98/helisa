@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+
+    </head>
+    <body>
+        <form action="index.php?c=login" method="post">
+            <label for="Indentificacion">Indentificacion</label><br>
+            <input type="text" id="Identificacion" name="Identificacion" placeholder="123456" required>
+
+            <label for="password">Contraseña</label><br>
+            <input type="password" id="password" name="password" placeholder="escriba su contraseña" required>
+
+            <input  type="submit" id="btnLogin" name="btnLogin" value="Continuar" disabled>
+        </form>
+        <a href="index.php?c=recuperarcontra">No recuerdo mi contrseña</a><br>
+        <a href="index.php?c=registro">Registrarse</a>
+
+        <script> //jqery
+            function habilitar(){
+                identificacion = document.getElementById("Identificacion").value;
+                password = document.getElementById("password").value;
+                hab = 0;
+
+                if(identificacion == ""){
+                    hab++;
+                }
+                if(password == ""){
+                        hab++;
+                }
+                
+
+                if(hab == 0){
+                    document.getElementById("btnLogin").disabled = false;
+                }else{
+                    document.getElementById("btnLogin").disabled = true;
+                }
+            }
+
+            document.getElementById("Identificacion").addEventListener("keyup",habilitar);
+            document.getElementById("password").addEventListener("keyup",habilitar);
+
+        </script>
+
+    </body>
+</html>
