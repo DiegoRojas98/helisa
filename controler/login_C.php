@@ -1,24 +1,24 @@
 <?php
 
 
-    class login{
+    class login_C{
 
         public function __construct(){
             if(isset($_POST['Identificacion'])){
                 $this->validar($_POST['Identificacion'],$_POST['password']);
-            }else{  
+            }else{
                 require_once 'views/login.html';
             }
         }
 
 
-        public function validar($Identificacion,$password){
-            require_once 'model/clientes.php';
-            require_once 'model/asesores.php';
+        private function validar($Identificacion,$password){
+            require_once 'model/clientes_M.php';
+            require_once 'model/asesores_M.php';
 
-            $usuarioA = new asesores();
+            $usuarioA = new asesores_M();
             $datosA['usuarios'] = $usuarioA->get_asesores();
-            $usuarioB = new clientes();
+            $usuarioB = new clientes_M();
             $datosB['usuarios'] = $usuarioB->get_clientes();
 
             $validarIdentificacion = false;
@@ -31,6 +31,9 @@
                     $validarIdentificacion = true;
                     if($dato["as_Password"] == $password){
                         $validarPass = true;
+                        session_start();
+                        $_SESSION['Identificacion'] = $dato["as_Identificacion"];
+                        $_SESSION['Rol'] = $dato["as_Rol"];
                     }
                 }
             }
@@ -40,18 +43,23 @@
                     $validarIdentificacion = true;
                     if($datoB["cl_Password"] == $password){
                         $validarPass = true;
+                        session_start();
+                        $_SESSION['Identificacion'] = $datoB["cl_Identificacion"];
+                        $_SESSION['Rol'] = $datoB["cl_Rol"];
                     }
                 }
             }
 
             if($validarIdentificacion == true){
                 if($validarPass == true){
-                    echo "Bienvenido";
+                    header('Location:Index.php');
                 }else{
                     echo "contraseña Incorrecta";
+                    require_once 'views/login.html';
                 }
             }else{
                 echo "la identificacio no se encuentra registrada";
+                require_once 'views/login.html';
             }
         }
 

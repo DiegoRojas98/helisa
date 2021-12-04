@@ -3,15 +3,16 @@
     
 
     function cargarControlador($controlador){
-        $archivoControlador = "controler/" . $controlador . ".php";
+        $Nombrecontrolador = $controlador . "_C";
+        $archivoControlador = "controler/" . $controlador . "_C.php";
 
         if(!is_file($archivoControlador)){
-            $archivoControlador = "controler/" . "login". ".php";
-            $controlador =  "login";
+            $archivoControlador = "controler/Index_C.php";
+            $Nombrecontrolador =  "Index_C";
         }
 
         require_once "$archivoControlador";
-        $control  = new $controlador();
+        $control  = new $Nombrecontrolador();
         return $control;
     }
 

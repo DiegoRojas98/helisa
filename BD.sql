@@ -13,7 +13,7 @@ CREATE TABLE asesor (
     as_HoraFin VARCHAR(55),
     #campos para la aplicacion web
     as_Rol VARCHAR(55) NOT NULL DEFAULT 'Asesor',
-    as_Password VARCHAR(55) NOT NULL,
+    as_Password VARCHAR(255) NOT NULL,
     as_Estado VARCHAR(30) NOT NULL DEFAULT 'Inactivo' 
 );
 
@@ -33,11 +33,12 @@ CREATE TABLE cliente (
     cl_Identificacion VARCHAR(15) PRIMARY  KEY,
     cl_Tipoidentificacion VARCHAR(55) NOT NULL,
     cl_Fechacreacion DATE NOT NULL,
-    cl_Password VARCHAR(55) NOT NULL,
+    cl_Password VARCHAR(255) NOT NULL,
+    cl_Rol VARCHAR(55) NOT NULL DEFAULT 'Cliente',
     cl_Ciudad VARCHAR(55) NOT NULL,
-    cl_País VARCHAR(55) NOT NULL,
+    cl_Pais VARCHAR(55) NOT NULL,
     FOREIGN KEY (cl_Ciudad) REFERENCES ciudad(ciu_Nombre),
-    FOREIGN KEY (cl_País) REFERENCES pais(pa_Nombre)
+    FOREIGN KEY (cl_Pais) REFERENCES pais(pa_Nombre)
 );
 
 
@@ -85,7 +86,7 @@ INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
     as_AñosExperiencia,as_Especialidad,as_HoraInicio,as_HoraFin,
     as_Rol,as_Password,as_Estado) 
     VALUES ('Diego','1013683036','Cedula','1','Administrativo',
-            '8:00','5:00','Administrador','Holamundo','Activo');
+            '8:00','15:00','Administrador','Holamundo','Activo');
 
 
 
@@ -93,7 +94,7 @@ INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
 
 CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
     tipoIdentificacion VARCHAR(55),añosExperiencia INT,especialidad VARCHAR(55),
-    password VARCHAR(55))
+    password VARCHAR(255))
     INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
     as_AñosExperiencia,as_Especialidad,as_Password)
     VALUES(nombre,identificacion,tipoIdentificacion,añosExperiencia,especialidad,
@@ -101,7 +102,7 @@ CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
 
 CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
     tipoIdentificacion VARCHAR(55),añosExperiencia INT,especialidad VARCHAR(55),
-    password VARCHAR(55))
+    password VARCHAR(255))
     UPDATE asesor
     SET as_Nombre = nombre,
     as_TipoIdentificacion = tipoIdentificacion,
@@ -127,21 +128,21 @@ CREATE PROCEDURE eliminar_Asesor(identificacion VARCHAR(15))
 
 CREATE PROCEDURE ingresar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30),
     identificacion VARCHAR(15),tipoidentificacion VARCHAR(55),fechacreacion DATE,
-    password VARCHAR(55),ciudad VARCHAR(55),país VARCHAR(55))
+    password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
     INSERT INTO cliente(cl_Nombres,cl_Apellidos,cl_Identificacion,cl_Tipoidentificacion,
-    cl_Fechacreacion,cl_Password,cl_Ciudad,cl_País)
+    cl_Fechacreacion,cl_Password,cl_Ciudad,cl_Pais)
     VALUES (nombres,apellidos,identificacion,tipoidentificacion,fechacreacion,
-    password,ciudad,país);
+    password,ciudad,pais);
     
 CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), identificacion VARCHAR(15),
-    tipoidentificacion VARCHAR(55),password VARCHAR(55),ciudad VARCHAR(55),país VARCHAR(55))
+    tipoidentificacion VARCHAR(55),password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
     UPDATE cliente
     SET cl_Nombres = nombres,
     cl_Apellidos = apellidos,
     cl_Tipoidentificacion = tipoidentificacion,
     cl_Password = password,
     cl_Ciudad = ciudad,
-    Cl_País = país
+    Cl_Pais = pais
     WHERE cl_Identificacion = identificacion;
 
 CREATE PROCEDURE eliminar_Cliente(identificacion VARCHAR(15))

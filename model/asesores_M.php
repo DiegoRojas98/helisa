@@ -2,7 +2,7 @@
 
     require_once 'conexion.php';
 
-    class clientes{
+    class asesores_M{
         private $db ;
         private $resultado;
 
@@ -11,8 +11,8 @@
             $this->resultado = array();
         }
 
-        public function get_clientes(){
-            $sql = "select * from cliente";
+        public function get_asesores(){
+            $sql = "select * from asesor";
             $resultado = $this->db->query($sql);
             while($datos = $resultado->fetch_assoc()){
                 $this->usuarios[] = $datos;
