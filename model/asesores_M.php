@@ -20,6 +20,11 @@
             return $this->usuarios;
         }
 
+        public function set_registrar($nombre,$identificacion,$tipoIdentificacion,$ansExperiencia,$especialidad,$password){
+            $sql = "CALL ingresar_Asesor ('$nombre','$identificacion','$tipoIdentificacion','$ansExperiencia','$especialidad','$password')";
+            $this->db->query($sql);
+        }
+
     }
 
 

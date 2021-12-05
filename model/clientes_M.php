@@ -27,6 +27,11 @@
             return $datouser;
         }
 
+        public function set_registrar($nombres,$apellidos,$identificacion,$tipoidentificacion,$fechacreacion,$password,$ciudad,$pais){
+                    $sql = "CALL ingresar_Cliente ('$nombres','$apellidos','$identificacion','$tipoidentificacion','$fechacreacion','$password','$ciudad','$pais')";
+                    $this->db->query($sql);
+        }   
+
 
     }
 

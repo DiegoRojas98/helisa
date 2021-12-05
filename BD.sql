@@ -5,7 +5,7 @@ USE Citas;
 #creacion de tablas
 CREATE TABLE asesor (
     as_Nombre VARCHAR(55) NOT NULL,
-    as_Identificacion VARCHAR(15) PRIMARY  KEY,
+    as_Identificacion VARCHAR(25) PRIMARY  KEY,
     as_TipoIdentificacion VARCHAR(55) NOT NULL,
     as_AñosExperiencia INT NOT NULL,
     as_Especialidad VARCHAR(55) NOT NULL,
