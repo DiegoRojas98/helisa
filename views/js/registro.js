@@ -95,7 +95,7 @@
             contentType: false,
             success: function (response){
                 if(response == 0){
-                    $('#Sidentificacion').text('La identificacion ya se encuentra asociada a uno de nuestros usuarios verifiquela.')
+                    $('#Sidentificacion').text('La identificacion ya se encuentra asociada a uno de nuestros usuarios verifiquela.');
                 }else{
                     alert('El usuario fue registrado correctamente.\nAhora puedes ingresar en la aplicacion');
                     window.location.href='Index.php';

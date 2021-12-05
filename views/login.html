@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
+<!doctype html>
+<html lang="sp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <title>Log-in</title>
+    <!-- <link rel="Stylesheet" type="text/css" href="NoLogin.css"> -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- iconos js -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <!-- jqery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
 
-    </head>
-    <body>
-        <form action="index.php?c=login" method="post">
-            <label for="Indentificacion">Indentificacion</label><br>
-            <input type="text" id="Identificacion" name="Identificacion" placeholder="123456" required>
+  <body >
+    <div class="card" style="width: 50%;">
+        <div class="card-body">
+          <h5 class="card-title">Iniciar Sesion</h5>    
+          <form>
+            <div class="mb-3">
+              <label for="Identificacion" class="form-label">Identificacion</label>
+              <input type="text" class="form-control" id="Identificacion" required>
+              <div id="SIdentificacion" class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password">
+              <div id="Spassword" class="form-text"></div>
+            </div>
+            <button type="button" class="btn btn-primary" id="btnLogin" disabled>Ingresar</button>
+          </form>
 
-            <label for="password">Contraseña</label><br>
-            <input type="password" id="password" name="password" placeholder="escriba su contraseña" required>
+          <a class="btn btn-primary" href="index.php?c=registro" role="button" style="margin-top: 10px;">Registrarse</a>
+        </div>
+      </div>
 
-            <input  type="submit" id="btnLogin" name="btnLogin" value="Continuar" disabled>
-        </form>
-        <!-- <a href="index.php?c=recuperarcontra">No recuerdo mi contrseña</a><br> -->
-        <a href="index.php?c=registro">Registrarse</a>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- js para boostrap -->
+    
+      <script src="views/js/log-in.js"></script>
+  </body>
+  
 
-        <script> //jqery
-            function habilitar(){
-                identificacion = document.getElementById("Identificacion").value;
-                password = document.getElementById("password").value;
-                hab = 0;
-
-                if(identificacion == ""){
-                    hab++;
-                }
-                if(password == ""){
-                        hab++;
-                }
-                
-
-                if(hab == 0){
-                    document.getElementById("btnLogin").disabled = false;
-                }else{
-                    document.getElementById("btnLogin").disabled = true;
-                }
-            }
-
-            document.getElementById("Identificacion").addEventListener("keyup",habilitar);
-            document.getElementById("password").addEventListener("keyup",habilitar);
-
-        </script>
-
-    </body>
 </html>

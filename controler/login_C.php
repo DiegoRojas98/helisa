@@ -4,8 +4,8 @@
     class login_C{
 
         public function __construct(){
-            if(isset($_POST['Identificacion'])){
-                $this->validar($_POST['Identificacion'],$_POST['password']);
+            if((isset($_POST['accion'])) && ($_POST['accion'] == 'validarUsuario')){
+                $this->validar($_POST['identificacion'],$_POST['password']);
             }else{
                 require_once 'views/login.html';
             }
@@ -15,6 +15,7 @@
         private function validar($Identificacion,$password){
             require_once 'model/clientes_M.php';
             require_once 'model/asesores_M.php';
+            
 
             $usuarioA = new asesores_M();
             $datosA['usuarios'] = $usuarioA->get_asesores();
@@ -52,14 +53,12 @@
 
             if($validarIdentificacion == true){
                 if($validarPass == true){
-                    header('Location:Index.php');
+                    echo 2;/* usuario admitido */
                 }else{
-                    echo "contraseña Incorrecta";
-                    require_once 'views/login.html';
+                    echo 0;//contraseña Incorrecta;
                 }
             }else{
-                echo "la identificacio no se encuentra registrada";
-                require_once 'views/login.html';
+                echo 1;//la identificacio no se encuentra registrada;
             }
         }
 
