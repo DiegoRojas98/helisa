@@ -21,16 +21,23 @@
         }
 
         public function get_ClientexIdentificacion($Identificacion){
-            $sql = "Select * from cliente where cl_Identificacion = $Identificacion";
+            $sql = "Select * from cliente where cl_Identificacion = '$Identificacion'";
             $resultado = $this->db->query($sql);
-            $datouser = $resultado->fetch_assoc();
-            return $datouser;
+            while($datos = $resultado->fetch_assoc()){
+                $this->usuarios[] = $datos;
+            };
+            return $this->usuarios;
         }
 
         public function set_registrar($nombres,$apellidos,$identificacion,$tipoidentificacion,$fechacreacion,$password,$ciudad,$pais){
                     $sql = "CALL ingresar_Cliente ('$nombres','$apellidos','$identificacion','$tipoidentificacion','$fechacreacion','$password','$ciudad','$pais')";
                     $this->db->query($sql);
-        }   
+        }  
+        
+        public function set_eliminarCliente($Identificacion){
+            $sql = "CALL eliminar_Cliente('$Identificacion')";
+            $this->db->query($sql);
+        }
 
 
     }

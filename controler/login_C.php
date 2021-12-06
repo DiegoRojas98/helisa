@@ -35,6 +35,7 @@
                         session_start();
                         $_SESSION['Identificacion'] = $dato["as_Identificacion"];
                         $_SESSION['Rol'] = $dato["as_Rol"];
+                        $_SESSION['Nombre'] = $dato["as_Nombre"];
                     }
                 }
             }
@@ -47,6 +48,7 @@
                         session_start();
                         $_SESSION['Identificacion'] = $datoB["cl_Identificacion"];
                         $_SESSION['Rol'] = $datoB["cl_Rol"];
+                        $_SESSION['Nombre'] = $datoB["cl_Nombres"];
                     }
                 }
             }

@@ -5,7 +5,7 @@ USE Citas;
 #creacion de tablas
 CREATE TABLE asesor (
     as_Nombre VARCHAR(55) NOT NULL,
-    as_Identificacion VARCHAR(25) PRIMARY  KEY,
+    as_Identificacion INT PRIMARY  KEY,
     as_TipoIdentificacion VARCHAR(55) NOT NULL,
     as_AñosExperiencia INT NOT NULL,
     as_Especialidad VARCHAR(55) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE ciudad(
 CREATE TABLE cliente (
     cl_Nombres VARCHAR(30) NOT NULL,
     cl_Apellidos VARCHAR(30) NOT NULL,
-    cl_Identificacion VARCHAR(15) PRIMARY  KEY,
+    cl_Identificacion INT PRIMARY  KEY,
     cl_Tipoidentificacion VARCHAR(55) NOT NULL,
     cl_Fechacreacion DATE NOT NULL,
     cl_Password VARCHAR(255) NOT NULL,
@@ -47,8 +47,8 @@ CREATE TABLE Citas(
     cit_fecha DATE NOT NULL,
     cit_HoraInicio VARCHAR(55) NOT NULL,
     cit_HoraFin VARCHAR(55) NOT NULL,
-    cit_Asesor VARCHAR(15) NOT NULL,
-    cit_Cliente VARCHAR(15) NOT NULL,
+    cit_Asesor INT NOT NULL,
+    cit_Cliente INT NOT NULL,
     FOREIGN KEY (cit_Asesor) REFERENCES asesor(as_Identificacion) ON DELETE CASCADE,
     FOREIGN KEY (cit_Cliente) REFERENCES cliente(cl_Identificacion) ON DELETE CASCADE
 );
@@ -92,7 +92,7 @@ INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
 
 #procedimientos almacenados para creacion de asesores, clientes y citas
 
-CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
+CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion INT,
     tipoIdentificacion VARCHAR(55),añosExperiencia INT,especialidad VARCHAR(55),
     password VARCHAR(255))
     INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
@@ -100,7 +100,7 @@ CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
     VALUES(nombre,identificacion,tipoIdentificacion,añosExperiencia,especialidad,
     password);
 
-CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
+CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion INT,
     tipoIdentificacion VARCHAR(55),añosExperiencia INT,especialidad VARCHAR(55),
     password VARCHAR(255))
     UPDATE asesor
@@ -112,7 +112,7 @@ CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion VARCHAR(15),
     WHERE as_Identificacion = identificacion;
 
 #procedimiento para la manipulacion del horaRio y estado de los asesores por parte del administrador
-CREATE PROCEDURE modificar_AsesorAdm(identificacion VARCHAR(15),horaInicio VARCHAR(55),
+CREATE PROCEDURE modificar_AsesorAdm(identificacion INT,horaInicio VARCHAR(55),
     horaFin VARCHAR(55),rol VARCHAR(55),estado VARCHAR(30))
     UPDATE asesor
     SET as_HoraInicio = horaInicio,
@@ -121,20 +121,20 @@ CREATE PROCEDURE modificar_AsesorAdm(identificacion VARCHAR(15),horaInicio VARCH
     as_Estado =  estado
     WHERE as_Identificacion = identificacion;
 
-CREATE PROCEDURE eliminar_Asesor(identificacion VARCHAR(15))
+CREATE PROCEDURE eliminar_Asesor(identificacion INT)
     DELETE FROM asesor WHERE as_Identificacion = identificacion;
 
 
 
 CREATE PROCEDURE ingresar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30),
-    identificacion VARCHAR(15),tipoidentificacion VARCHAR(55),fechacreacion DATE,
+    identificacion INT,tipoidentificacion VARCHAR(55),fechacreacion DATE,
     password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
     INSERT INTO cliente(cl_Nombres,cl_Apellidos,cl_Identificacion,cl_Tipoidentificacion,
     cl_Fechacreacion,cl_Password,cl_Ciudad,cl_Pais)
     VALUES (nombres,apellidos,identificacion,tipoidentificacion,fechacreacion,
     password,ciudad,pais);
     
-CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), identificacion VARCHAR(15),
+CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), identificacion INT,
     tipoidentificacion VARCHAR(55),password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
     UPDATE cliente
     SET cl_Nombres = nombres,
@@ -145,10 +145,10 @@ CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), i
     Cl_Pais = pais
     WHERE cl_Identificacion = identificacion;
 
-CREATE PROCEDURE eliminar_Cliente(identificacion VARCHAR(15))
+CREATE PROCEDURE eliminar_Cliente(identificacion INT)
     DELETE FROM cliente WHERE cl_Identificacion = identificacion;
 
-CREATE PROCEDURE ingresar_Cita(fecha DATE,horaInicio VARCHAR(55),horaFin VARCHAR(55),asesor VARCHAR(15),cliente VARCHAR(15))
+CREATE PROCEDURE ingresar_Cita(fecha DATE,horaInicio VARCHAR(55),horaFin VARCHAR(55),asesor INT,cliente INT)
     INSERT INTO citas (cit_fecha,cit_HoraInicio,cit_HoraFin,cit_Asesor,cit_Cliente)
     VALUES (fecha,horaInicio,horaFin,asesor,cliente);
 
