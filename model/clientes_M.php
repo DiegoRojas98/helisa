@@ -30,12 +30,17 @@
         }
 
         public function set_registrar($nombres,$apellidos,$identificacion,$tipoidentificacion,$fechacreacion,$password,$ciudad,$pais){
-                    $sql = "CALL ingresar_Cliente ('$nombres','$apellidos','$identificacion','$tipoidentificacion','$fechacreacion','$password','$ciudad','$pais')";
-                    $this->db->query($sql);
+            $sql = "CALL ingresar_Cliente ('$nombres','$apellidos','$identificacion','$tipoidentificacion','$fechacreacion','$password','$ciudad','$pais')";
+            $this->db->query($sql);
         }  
         
         public function set_eliminarCliente($Identificacion){
             $sql = "CALL eliminar_Cliente('$Identificacion')";
+            $this->db->query($sql);
+        }
+
+        public function set_modificarCliente($nombres,$apellidos,$identificacion,$password,$ciudad,$pais){
+            $sql = "CALL modificar_Cliente ('$nombres','$apellidos','$identificacion','$password','$ciudad','$pais')";
             $this->db->query($sql);
         }
 

@@ -9,6 +9,10 @@
                 $this->ObtenerResultados();
             }elseif((isset($_POST['accion'])) && ($_POST['accion'] == 'eliminar')){
                 $this->eliminar();
+            }elseif((isset($_GET['accion'])) && ($_GET['accion'] == 'modificarV')){
+                $this->modificarV();
+            }elseif((isset($_POST['accion'])) && ($_POST['accion'] == 'modificarCliente')){
+                $this->modificarCliente();
             }else{
                 require_once 'views/clientes.html';
             }
@@ -42,6 +46,33 @@
                 echo 1;/* se elimino el cliente */
             }else{
                 echo 0;/* no se elimino el cliente por que ya no se encontraba en bd lo que quiere decir que fue eliminado con anterioridad */
+            }
+        }
+
+
+        private function modificarV(){
+            $cliente = new clientes_M();
+            $cldat= $cliente->get_ClientexIdentificacion($_GET['Identificacion']);
+            echo json_encode($cldat);
+        }
+
+
+        private function modificarCliente(){
+            $cliente = new clientes_M();
+            $cldat= $cliente->get_ClientexIdentificacion($_POST['identificacion']);
+            $validarIdentificacion = false;
+
+            foreach($cldat as $dato){
+                if($dato['cl_Identificacion'] == $_POST['identificacion']){
+                    $validarIdentificacion = true;
+                }
+            }
+
+            if($validarIdentificacion == true){
+                $cliente->set_modificarCliente($_POST['nombres'],$_POST['apellidos'],$_POST['identificacion'],$_POST['password'],$_POST['ciudad'],$_POST['pais']);
+                echo 1;/* se modificao el cliente*/
+            }else{
+                echo 0;/* no se modifico el cliente por que ya no se encontraba en bd lo que quiere decir que fue eliminado con anterioridad */
             }
         }
 

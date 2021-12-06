@@ -21,10 +21,10 @@
               <a class="nav-link disabled" aria-current="page" id="mensaje">Bienvenido </a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.php?c=Clientes">Clientes</a>
+              <a class="nav-link" id="encabezadoClientes" aria-current="page" href="index.php?c=Clientes">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.php?c=asesores">Asesores</a>
+              <a class="nav-link active" id="encabezadoAsesores" href="index.php?c=asesores">Asesores</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?c=citas">Citas</a>
@@ -34,24 +34,105 @@
             </li>
         </ul>
 
+
+        <table class="table table-bordered border-primary" id="crearAsesor" style="display: none;">
+          <thead>
+            <th colspan="10">Crear Asesor</th>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Identificacion</th>
+              <th scope="col">Tipo De Identificacion</th>
+              <th scope="col">Años de experiencia</th>
+              <th scope="col">Tipo de asesoria</th>
+              <th scope="col">Contraseña</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <form>
+            <tr>
+              
+              <td scope="col"><input type="text" class="form-control" id="nombre" name="nombre"  required>
+                <div id="Snombre" class="form-text"></div></td>
+              <td scope="col"><input type="number" class="form-control" id="identificacion" required>
+                <div id="Sidentificacion" class="form-text"></div></td>
+              <td scope="col"><select class="form-select"  id="tipoIdentificacion" required>
+                <option selected value="">Tipo de Identificacion</option>
+                <option value="Cedula">Cedula</option>
+                <option value="DNI">DNI</option>
+              </select></td>
+              <td scope="col"><input type="number" class="form-control" id="ansExperiencia" min="0"  required>
+                <div id="SansExperiencia" class="form-text"></div></td>
+              <td scope="col"><select class="form-select" id="especialidad" required>
+                <option selected value="">Selectione el tipo de asesoria</option>
+                <option value="Asesoria laboral">Asesoria Laboral</option>
+                <option value="Asesoria juridica">Asesoria Juridica</option>
+                <option value="Asesoria Financiera">Asesoria Financiera</option>
+            </select></td>
+              <td scope="col"><input type="password" class="form-control" id="password" required>
+                <div id="Spassword" class="form-text"></div></td>
+              <td scope="col"><button type="button" id="btnAsesor" class="btn btn-primary" disabled>Crear</button></td>
+            </tr>
+            </form> 
+            
+          </tbody>
+        </table>
+
+
+
+        <table class="table table-bordered border-success" id="modificarAsesor"  style="display: none;">
+          <thead>
+            
+            <th colspan="10">Modificar Datos</th>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Identificacion</th>
+              <th scope="col">Años de experiencia</th>
+              <th scope="col">Especialidad</th>
+              <th scope="col">Nueva Contraseña</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <form>
+              <tr>
+                
+                <td scope="col"><input type="text" class="form-control" id="nombreM" name="nombre"  required>
+                  <div id="SnombreM" class="form-text"></div></td>
+                <td scope="col"><input type="number" class="form-control" id="identificacionM" required disabled>
+                  <div id="SidentificacionM" class="form-text"></div></td>
+                <td scope="col"><input type="number" class="form-control" id="ansExperienciaM" required>
+                  <div id="SansExperienciaM" class="form-text"></div></td>
+                <td scope="col"><select class="form-select" id="especialidadM" required>
+                  <option selected value="">*Selectione el tipo de asesoria*</option>
+                  <option value="Asesoria laboral">Asesoria Laboral</option>
+                  <option value="Asesoria juridica">Asesoria Juridica</option>
+                  <option value="Asesoria Financiera">Asesoria Financiera</option>
+              </select></td>
+                <td scope="col"><input type="password" class="form-control" id="passwordM" required>
+                  <div id="SpasswordM" class="form-text"></div></td>
+                <td scope="col"><button type="button" id="btnAsesorM" class="btn btn-success" disabled>Modificar</button></td>
+              </tr>
+              </form> 
+            
+          </tbody>
+        </table>
+
         
-        <table class="table table-bordered" style="margin-top:1%;display: flex;justify-content : center;align-items: center">
+        <table class="table table-bordered border-dark" >
           <thead>
             <tr>
-              <th scope="col">Nombres</th>
+              <th scope="col">Nombre</th>
               <th scope="col">Identificacion</th>
               <th scope="col">Tipo De Identificacion</th>
               <th scope="col">Años de experiencia</th>
               <th scope="col">Especialidad</th>
               <th scope="col">Hora Ingreso</th>
               <th scope="col">Hora Salida</th>
-              <th scope="col" style='display:none'>Contraseña</th>
-              <th scope="col" style='display:none'>rol</th>
-              <th scope="col" style='display:none'>Estado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="registrosAsesores">
             
           </tbody>
         </table>

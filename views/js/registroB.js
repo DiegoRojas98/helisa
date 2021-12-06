@@ -76,7 +76,7 @@
         if(identificacion.length > 25){
             habilitarbtn++;
             $('#SidentificacionC').text('La identificacion no debe contener mas de 25 caracteres');               
-        }else if(identificacion.length < 5){
+        }else if((identificacion.length > 0) && (identificacion.length < 5)){
             habilitarbtn++;
             $('#SidentificacionC').text('La identificacion no puede contener menos de 5 digitos y No debera contener ningun signo especial o carcater alfabetico.');               
         }else{
@@ -155,7 +155,7 @@
                 if(response == 0){
                     $('#SidentificacionC').text('La identificacion ya se encuentra asociada a uno de nuestros usuarios verifiquela.')
                 }else{
-                    alert('El usuario fue registrado correctamente.\nAhora puedes ingresar en la aplicacion');
+                    alert('El usuario fue registrado correctamente.\nAhora puede ingresar en la aplicacion');
                     window.location.href='Index.php';
                 }
             }

@@ -24,7 +24,7 @@
               <a class="nav-link active" id="encabezadoClientes" aria-current="page" href="index.php?c=Clientes">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?c=asesores">Asesores</a>
+              <a class="nav-link" id="encabezadoAsesores" href="index.php?c=asesores">Asesores</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?c=citas">Citas</a>
@@ -34,7 +34,133 @@
             </li>
         </ul>
 
-        <table class="table table-bordered" id="tablas">
+        
+        <table class="table table-bordered border-primary" id="crearCliente" style="display: none;">
+          <thead>
+            <th colspan="10">Crear cliente</th>
+            <tr>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Identificacion</th>
+              <th scope="col">Tipo De Identificacion</th>
+              <th scope="col">Pais</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Contraseña</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <form>
+            <tr>
+              
+              <td scope="col"><input type="text" class="form-control" id="nombresC" name="nombre"  required>
+                <div id="SnombresC" class="form-text"></div></td>
+              <td scope="col"><input type="text" class="form-control" id="apellidosC" name="nombre"  required>
+                <div id="SapellidosC" class="form-text"></div></td>
+              <td scope="col"><input type="number" class="form-control" id="identificacionC" required>
+                <div id="SidentificacionC" class="form-text"></div></td>
+              <td scope="col"><select class="form-select"  id="tipoIdentificacionC" required>
+                <option selected value="">Tipo de Identificacion</option>
+                <option value="Cedula">Cedula</option>
+                <option value="DNI">DNI</option>
+            </select></td>
+              <td scope="col"><select class="form-select" id="paisC" required>
+                <option selected value="">pais</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Peru">Peru</option>
+                <option value="Chile">Chile</option>
+              </select></td>
+              <td scope="col"><select class="form-select" id="ciudadA" style="display: none;">
+                <option selected value="">ciudad</option>
+                <option value="Bogota">Bogota</option>
+                <option value="Medellin">Medellin</option>
+                <option value="Cali">Cali</option>
+                <option value="Barranquilla">Barranquilla</option>
+                <option value="Cartagena">Cartagena</option>
+              </select>
+              <select class="form-select" id="ciudadB" style="display: none;">
+                <option selected value="">ciudad</option>
+                <option value="Lima">Lima</option>
+                <option value="Arequipa">Arequipa</option>
+                <option value="Callao">Callao</option>
+                <option value="Trujillo">Trujillo</option>
+              </select>
+              <select class="form-select" id="ciudadC" style="display: none;">
+                <option selected value="">ciudad</option>
+                <option value="Santiago">Santiago</option>
+                <option value="Concepcion">Concepcion</option>
+                <option value="Valparaiso">Valparaiso</option>
+              </select></td>
+              <td scope="col"><input type="password" class="form-control" id="passwordC" required>
+                <div id="SpasswordC" class="form-text"></div></td>
+              <td scope="col"><button type="button" id="btnCliente" class="btn btn-primary" disabled>Crear</button></td>
+            </tr>
+            </form> 
+            
+          </tbody>
+        </table>
+
+        <table class="table table-bordered border-success" id="modificarCliente" style="display: none;">
+          <thead>
+            
+            <th colspan="10">Modificar Datos</th>
+            <tr>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Identificacion</th>
+              <th scope="col">Pais</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Nuvea Contraseña</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <form>
+              <tr>
+                
+                <td scope="col"><input type="text" class="form-control" id="nombresCM" name="nombre"  required>
+                  <div id="SnombresCM" class="form-text"></div></td>
+                <td scope="col"><input type="text" class="form-control" id="apellidosCM" name="nombre"  required>
+                  <div id="SapellidosCM" class="form-text"></div></td>
+                <td scope="col"><input type="number" class="form-control" id="identificacionCM" required disabled>
+                  <div id="SidentificacionCM" class="form-text"></div></td>
+                <td scope="col"><select class="form-select" id="paisCM" required>
+                  <option  value="">*Pais</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Peru">Peru</option>
+                  <option value="Chile">Chile</option>
+                </select></td>
+                <td scope="col"><select class="form-select" id="ciudadAM" style="display: none;">
+                  <option  value="">*ciudad</option>
+                  <option value="Bogota">Bogota</option>
+                  <option value="Medellin">Medellin</option>
+                  <option value="Cali">Cali</option>
+                  <option value="Barranquilla">Barranquilla</option>
+                  <option value="Cartagena">Cartagena</option>
+                </select>
+                <select class="form-select" id="ciudadBM" style="display: none;">
+                  <option  value="">*ciudad</option>
+                  <option value="Lima">Lima</option>
+                  <option value="Arequipa">Arequipa</option>
+                  <option value="Callao">Callao</option>
+                  <option value="Trujillo">Trujillo</option>
+                </select>
+                <select class="form-select" id="ciudadCM" style="display: none;">
+                  <option  value="">*ciudad</option>
+                  <option value="Santiago">Santiago</option>
+                  <option value="Concepcion">Concepcion</option>
+                  <option value="Valparaiso">Valparaiso</option>
+                </select></td>
+                <td scope="col"><input type="password" class="form-control" id="passwordCM" required>
+                  <div id="SpasswordCM" class="form-text"></div></td>
+                <td scope="col"><button type="button" id="btnClienteM" class="btn btn-success" disabled>Modificar</button></td>
+              </tr>
+              </form> 
+            
+          </tbody>
+        </table>
+
+        <table class="table table-bordered border-dark" id="tablas">
           <thead>
             <tr>
               <th scope="col">Nombres</th>
@@ -53,28 +179,9 @@
           </tbody>
         </table>
 
-        <table class="table table-bordered" id="crearCliente" style="display: none;">
-          <thead>
-            <tr>
-              <th scope="col">Nombres</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Identificacion</th>
-              <th scope="col">Tipo De Identificacion</th>
-              <th scope="col">Fecha de creaccion</th>
-              <th scope="col">Ciudad</th>
-              <th scope="col">Pais</th>
-              <th scope="col" style='display:none'>Contraseña</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody >
-            
-          </tbody>
-        </table>
-
-
         <script src="views/js/clientes.js"></script>
         <script src="views/js/barranavegacion.js"></script>
+        <script src="views/js/registroB.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- js para boostrap -->

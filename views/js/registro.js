@@ -32,7 +32,7 @@
         if(identificacion.length > 25){
             habilitarbtn++;
             $('#Sidentificacion').text('La identificacion no debe contener mas de 25 caracteres');               
-        }else if(identificacion.length < 5){
+        }else if((identificacion.length > 0) && (identificacion.length < 5)){
             habilitarbtn++;
             $('#Sidentificacion').text('La identificacion no puede contener menos de 5 digitos y No debera contener ningun signo especial o carcater alfabetico.');               
         }else{

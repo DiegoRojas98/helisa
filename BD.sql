@@ -9,12 +9,11 @@ CREATE TABLE asesor (
     as_TipoIdentificacion VARCHAR(55) NOT NULL,
     as_AñosExperiencia INT NOT NULL,
     as_Especialidad VARCHAR(55) NOT NULL,
-    as_HoraInicio VARCHAR(55),
-    as_HoraFin VARCHAR(55),
+    as_HoraInicio VARCHAR(55) DEFAULT '8:00' ,
+    as_HoraFin VARCHAR(55) DEFAULT '17:00', 
     #campos para la aplicacion web
     as_Rol VARCHAR(55) NOT NULL DEFAULT 'Asesor',
-    as_Password VARCHAR(255) NOT NULL,
-    as_Estado VARCHAR(30) NOT NULL DEFAULT 'Inactivo' 
+    as_Password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE pais(
@@ -83,10 +82,9 @@ INSERT INTO ciudad(ciu_Nombre,ciu_Pais)  VALUES ('Valparaiso','chile');
   de administrador por lo tanto es el unico que puede eliminar asesores.*/
 
 INSERT INTO asesor(as_Nombre,as_Identificacion,as_TipoIdentificacion,
-    as_AñosExperiencia,as_Especialidad,as_HoraInicio,as_HoraFin,
-    as_Rol,as_Password,as_Estado) 
+    as_AñosExperiencia,as_Especialidad,as_Rol,as_Password) 
     VALUES ('Diego','1013683036','Cedula','1','Administrativo',
-            '8:00','15:00','Administrador','Holamundo','Activo');
+            'Administrador','Holamundo');
 
 
 
@@ -100,26 +98,15 @@ CREATE PROCEDURE ingresar_Asesor(nombre VARCHAR(55),identificacion INT,
     VALUES(nombre,identificacion,tipoIdentificacion,añosExperiencia,especialidad,
     password);
 
-CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion INT,
-    tipoIdentificacion VARCHAR(55),añosExperiencia INT,especialidad VARCHAR(55),
+CREATE PROCEDURE modificar_Asesor(nombre VARCHAR(55),identificacion INT,añosExperiencia INT,especialidad VARCHAR(55),
     password VARCHAR(255))
     UPDATE asesor
     SET as_Nombre = nombre,
-    as_TipoIdentificacion = tipoIdentificacion,
     as_AñosExperiencia = añosExperiencia,
     as_Especialidad = especialidad,
     as_Password = password
     WHERE as_Identificacion = identificacion;
 
-#procedimiento para la manipulacion del horaRio y estado de los asesores por parte del administrador
-CREATE PROCEDURE modificar_AsesorAdm(identificacion INT,horaInicio VARCHAR(55),
-    horaFin VARCHAR(55),rol VARCHAR(55),estado VARCHAR(30))
-    UPDATE asesor
-    SET as_HoraInicio = horaInicio,
-    as_HoraFin = horaFin,
-    as_Rol =  rol,
-    as_Estado =  estado
-    WHERE as_Identificacion = identificacion;
 
 CREATE PROCEDURE eliminar_Asesor(identificacion INT)
     DELETE FROM asesor WHERE as_Identificacion = identificacion;
@@ -135,11 +122,10 @@ CREATE PROCEDURE ingresar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30),
     password,ciudad,pais);
     
 CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), identificacion INT,
-    tipoidentificacion VARCHAR(55),password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
+    password VARCHAR(255),ciudad VARCHAR(55),pais VARCHAR(55))
     UPDATE cliente
     SET cl_Nombres = nombres,
     cl_Apellidos = apellidos,
-    cl_Tipoidentificacion = tipoidentificacion,
     cl_Password = password,
     cl_Ciudad = ciudad,
     Cl_Pais = pais
@@ -164,10 +150,8 @@ CALL ingresar_Asesor('Raul Ramos','102030','Cedula',3,'Asesoria Juridica','raul1
 CALL ingresar_Asesor('Jorge Ramos','402030','Cedula',1,'Asesoria Laboral','jorge423');
 CALL ingresar_Asesor('Julian Espino','502030','DNI',5,'Asesoria Financiera','julian523');
 
-CALL modificar_AsesorAdm('102030','9:00','16:00','Asesor','Activo');
-CALL modificar_AsesorAdm('502030','10:00','17:00','Asesor','Activo');
 
-CALL ingresar_Cliente('Oscar','Rodrigez','123456','DNI','2021-12-02','oscar123','Lima','peru');
+CALL ingresar_Cliente('Oscar','Rodrigez','123456','DNI','2021-12-02','oscar123','Lima','Peru');
 CALL ingresar_Cliente('Juan','Lozano','134679','Cedula','2021-12-03','JuanL','Bogota','Colombia');
 CALL ingresar_Cliente('Maria','Bejarano','97531','Cedula','2021-12-03','MariaB','Santiago','Chile');
 
