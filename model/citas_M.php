@@ -43,6 +43,11 @@ require_once 'conexion.php';
             $this->db->query($sql);
         }
 
+        public function set_CrearCita($fecha,$hora,$asesor,$cliente){
+            $sql = "CALL ingresar_Cita('$fecha','$hora','$asesor','$cliente')";
+            $this->db->query($sql);
+        }
+
     }
 
 ?>

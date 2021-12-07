@@ -17,8 +17,7 @@
 
                                     plantilla+="<th>"+ valor.cit_Id +"</th>";
                                     plantilla+="<td>"+ valor.cit_fecha+"</td>";
-                                    plantilla+="<td>"+ valor.cit_HoraInicio +"</td>";
-                                    plantilla+="<td>"+ valor.cit_HoraFin +"</td>";
+                                    plantilla+="<td>"+ valor.cit_Hora +"</td>";
                                     plantilla+="<td>"+ valor.cit_Asesor +"</td>";
                                     plantilla+="<td>"+ valor.cit_Cliente +"</td>";
                                     plantilla+='<td><button type="button" class="btn btn-danger" onclick="eliminarCita('+valor.cit_Id+')">Eliminar</button></td>';
@@ -45,7 +44,6 @@
             processData: false,
             contentType: false,
             success: function (respuesta) {
-                console.log(respuesta);
                 misCitasC(); 
             }
         }); 
@@ -54,41 +52,18 @@
 
     function datosDeForm(){
 
-        /* var tdate = new Date(); VERRRRRR   MODIFICAR DKANDKLANDKLANDLA DLANDLNALDNALK
-        var dd = tdate.getDate(); 
-        dd += 1;
-        if(dd < 10){
-            dd = "0" + dd;
-        }
-        var MM = tdate.getMonth(); 
-        var yyyy = tdate.getFullYear(); 
-        var fecha =  yyyy + "-" + MM + "-" + dd;
-        var fechas = fecha.toString();
-        console.log(fechas); */
-
         $('#fecha').attr('min', '2021-12-08');
 
 
-        $('#HoraInicio').prepend("<option value='16:00' >16:00</option>");
-        $('#HoraInicio').prepend("<option value='15:00' >15:00</option>");
-        $('#HoraInicio').prepend("<option value='14:00' >14:00</option>");
-        $('#HoraInicio').prepend("<option value='13:00' >13:00</option>");
-        $('#HoraInicio').prepend("<option value='12:00' >12:00</option>");
-        $('#HoraInicio').prepend("<option value='11:00' >11:00</option>");
-        $('#HoraInicio').prepend("<option value='10:00' >10:00</option>");
-        $('#HoraInicio').prepend("<option value='09:00' >9:00</option>");
-        $('#HoraInicio').prepend("<option value='08:00' selected>8:00</option>");
-
-        
-        $('#HoraFin').prepend("<option value='17:00' >17:00</option>");
-        $('#HoraFin').prepend("<option value='16:00' >16:00</option>");
-        $('#HoraFin').prepend("<option value='15:00' >15:00</option>");
-        $('#HoraFin').prepend("<option value='14:00' >14:00</option>");
-        $('#HoraFin').prepend("<option value='13:00' >13:00</option>");
-        $('#HoraFin').prepend("<option value='12:00' >12:00</option>");
-        $('#HoraFin').prepend("<option value='11:00' >11:00</option>");
-        $('#HoraFin').prepend("<option value='10:00' >10:00</option>");
-        $('#HoraFin').prepend("<option value='09:00' >9:00</option>");
+        $('#Hora').prepend("<option value='16:00' >16:00</option>");
+        $('#Hora').prepend("<option value='15:00' >15:00</option>");
+        $('#Hora').prepend("<option value='14:00' >14:00</option>");
+        $('#Hora').prepend("<option value='13:00' >13:00</option>");
+        $('#Hora').prepend("<option value='12:00' >12:00</option>");
+        $('#Hora').prepend("<option value='11:00' >11:00</option>");
+        $('#Hora').prepend("<option value='10:00' >10:00</option>");
+        $('#Hora').prepend("<option value='09:00' >9:00</option>");
+        $('#Hora').prepend("<option value='08:00' selected>8:00</option>");
 
         $.getJSON("index.php?c=auxiliarDts", "accion=modificandoElementos",
             function (respuesta) {
@@ -107,39 +82,21 @@
         
 
 
-    $('#HoraInicio').change(function(e){validarHora(); habiliatarCrearCita();})
-    $('#HoraFin').change(function(e){validarHora(); habiliatarCrearCita()})
+    $('#Hora').change(function(e){ habiliatarCrearCita();})
     $('#fecha').change(function(e){habiliatarCrearCita();})
     $('#identificacionAsesor').keyup(function(e){habiliatarCrearCita();})
     $('#identificacionCliente').keyup(function(e){habiliatarCrearCita();})
 
-    function validarHora(){
-        var HoraI = $('#HoraInicio').val();
-        var HoraF = $('#HoraFin').val();
-        
-        if( HoraI > HoraF){
-            alert("La hora de finalizacion de la cita no puede ser anterior a la hora de Inicio");
-            $('#HoraFin').val('17:00');
-        }else if(HoraI == HoraF){
-            alert("La hora de finalizacion de la cita no puede ser la misma que la hora de Inicio");
-            $('#HoraFin').val('17:00');
-        }
-
-    }
 
     function habiliatarCrearCita(){
-        var HoraI = $('#HoraInicio').val();
-        var HoraF = $('#HoraFin').val();
+        var Hora = $('#Hora').val();
         var fecha = $('#fecha').val();
         var IdntAs = $('#identificacionAsesor').val();
         var IdntCl = $('#identificacionCliente').val();
         
         habilitabtn = 0;
         
-        if(HoraI == ""){
-            habilitabtn++;
-        }
-        if(HoraF == ""){
+        if(Hora == ""){
             habilitabtn++;
         }
         if(fecha == ""){
@@ -184,13 +141,14 @@
     $('#btnCita').click(function(e){ validarDatosCita();})
 
     function validarDatosCita(){
+        
         var citdat = new FormData();
         citdat.append('fecha', $('#fecha').val());
-        citdat.append('HoraInicio', $('#HoraInicio').val());
-        citdat.append('HoraFin', $('#HoraFin').val());
+        citdat.append('Hora', $('#Hora').val());
         citdat.append('identificacionAsesor', $('#identificacionAsesor').val());
         citdat.append('identificacionCliente', $('#identificacionCliente').val());
         citdat.append('accion', 'CrearCita');
+
 
         $.ajax({
             type:'POST',
@@ -199,8 +157,19 @@
             processData: false,
             contentType: false,
             success: function (response){
+                if(response == 0){
+                    $('#SidentificacionAsesor').text('La identificaion ingresada no coincide con ninguna identificacion de nuestros Asesores.');
+                }else if(response == 1){
+                    $('#SidentificacionCliente').text('La identificaion ingresada no coincide con ninguna identificacion de nuestros Clientes.');
+                }else if(response == 2){
+                    $('#Smensaje').text('La hora de la cita elegida ya se encuentra ocupada para el Asesor, por favor elige otra en diferente hora o dia.');
+                }else if(response == 3){
+                    $('#Smensaje').text('La hora de la cita elegida ya se encuentra ocupada para el Cliente, por favor elige otra en diferente hora o dia.');
+                }else{
+                    $('#Smensaje').text('');
+                }
+                misCitasC()
 
-                console.log(response);
             }
         }) 
     }

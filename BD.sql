@@ -44,8 +44,7 @@ CREATE TABLE cliente (
 CREATE TABLE Citas(
     cit_Id INT PRIMARY KEY AUTO_INCREMENT,
     cit_fecha DATE NOT NULL,
-    cit_HoraInicio VARCHAR(55) NOT NULL,
-    cit_HoraFin VARCHAR(55) NOT NULL,
+    cit_Hora VARCHAR(55) NOT NULL,
     cit_Asesor INT NOT NULL,
     cit_Cliente INT NOT NULL,
     FOREIGN KEY (cit_Asesor) REFERENCES asesor(as_Identificacion) ON DELETE CASCADE,
@@ -134,9 +133,9 @@ CREATE PROCEDURE modificar_Cliente(nombres VARCHAR(30),apellidos  VARCHAR(30), i
 CREATE PROCEDURE eliminar_Cliente(identificacion INT)
     DELETE FROM cliente WHERE cl_Identificacion = identificacion;
 
-CREATE PROCEDURE ingresar_Cita(fecha DATE,horaInicio VARCHAR(55),horaFin VARCHAR(55),asesor INT,cliente INT)
-    INSERT INTO citas (cit_fecha,cit_HoraInicio,cit_HoraFin,cit_Asesor,cit_Cliente)
-    VALUES (fecha,horaInicio,horaFin,asesor,cliente);
+CREATE PROCEDURE ingresar_Cita(fecha DATE,hora VARCHAR(55),asesor INT,cliente INT)
+    INSERT INTO citas (cit_fecha,cit_Hora,cit_Asesor,cit_Cliente)
+    VALUES (fecha,hora,asesor,cliente);
 
 CREATE PROCEDURE eliminar_Cita(id INT)
 DELETE FROM citas WHERE cit_Id = id;
@@ -158,4 +157,4 @@ CALL ingresar_Cliente('Maria','Bejarano','97531','Cedula','2021-12-03','MariaB',
 
 
 
-CALL ingresar_Cita('2021-12-03','13:00','14:00','102030','123456');
+CALL ingresar_Cita('2021-12-08','13:00','102030','123456');

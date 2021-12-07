@@ -37,11 +37,10 @@
     
         <table class="table table-bordered border-primary">
           <thead>
-            <th colspan="10">Nueva Cita</th>
+            <th colspan="10">Nueva Cita<div id="Smensaje" class="form-text"></div></th>
             <tr>
               <th scope="col">Fecha</th>
-              <th scope="col">Hora inicio</th>
-              <th scope="col">Hora Fin</th>
+              <th scope="col">Hora</th>
               <th scope="col">Asesor</th>
               <th scope="col">Cliente</th>
               <th scope="col">Acciones</th>
@@ -51,8 +50,7 @@
             <form>
               <tr>
                 <td scope="col"><input type="date" id="fecha"  required></td> <!-- min="2021-12-07" -->
-                <td scope="col"><select class="form-select" id="HoraInicio" required></select></td>
-                <td scope="col"><select class="form-select" id="HoraFin" required></select></td>
+                <td scope="col"><select class="form-select" id="Hora" required></select></td>
                 <td scope="col"><input type="number" class="form-control" id="identificacionAsesor" required> 
                   <div id="SidentificacionAsesor" class="form-text"></div></td>
                 <td scope="col"><input type="number" class="form-control" id="identificacionCliente" required>
@@ -69,8 +67,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Fecha</th>
-              <th scope="col">Hora inicio</th>
-              <th scope="col">Hora Fin</th>
+              <th scope="col">Hora</th>
               <th scope="col">Identificacion Asesor</th>
               <th scope="col">Identificacion Cliente</th>
               <th scope="col">Acciones</th>
