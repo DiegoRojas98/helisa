@@ -51,6 +51,11 @@
             processData: false,
             contentType: false,
             success: function (respuesta) {
+                if(respuesta == 2){
+                    alert('eliminaste tu cuenta.')
+                    window.location.href='Index.php';
+                }
+                
                resultadosTable();
             }
         });  

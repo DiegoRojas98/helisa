@@ -151,7 +151,6 @@
             contentType: false,
             success: function (response){
 
-                console.log(response);
                 if(response == 0){
                     $('#SidentificacionC').text('La identificacion ya se encuentra asociada a uno de nuestros usuarios verifiquela.')
                 }else{

@@ -43,7 +43,13 @@
 
             if($validarIdentificacion == true){
                 $asesor->set_eliminarAsesor($_POST['Identificacion']);
-                echo 1;/* se elimino el cliente */
+                session_start();
+                if($_POST['Identificacion'] == $_SESSION['Identificacion']){
+                    session_destroy();
+                    echo 2;/* El registro eliminado es el mismo que usaba la cuenta actual(cuando un usuario elimina su propia cuenta)*/
+                }else{
+                    echo 1;/* se elimino el cliente */
+                }
             }else{
                 echo 0;/* no se elimino el cliente por que ya no se encontraba en bd lo que quiere decir que fue eliminado con anterioridad */
             }
@@ -75,10 +81,6 @@
                 echo 0;/* no se modificao el asesor por que ya no se encontraba en bd lo que quiere decir que fue eliminado con anterioridad */
             }
         }
-
-        
-
-
 
     }
 

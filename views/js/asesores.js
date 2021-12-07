@@ -10,6 +10,21 @@
         
         $('#registrosAsesores').empty();
 
+        /* obteniendo el rol para generar o No los botones de modificacion y eliminacion */
+        var rol;
+        var datosSesion = new FormData();
+        datosSesion.append('accion','obtenerSesionRol');
+        $.ajax({
+            type: "POST",
+            url: 'index.php?c=auxiliarDts',
+            data: datosSesion,
+            processData: false,
+            contentType: false,
+            success: function (respuesta) {
+                rol = respuesta;
+            }
+        }); 
+
         $.getJSON("index.php?c=asesores", "accion=ObtenerResultados",
             function (respuesta) {
                 var registros = [];
@@ -25,12 +40,15 @@
                                 plantilla+="<td>"+ valor.as_Especialidad +"</td>";
                                 plantilla+="<td>"+ valor.as_HoraInicio +"</td>";
                                 plantilla+="<td>"+ valor.as_HoraFin +"</td>";
-                                if(valor.as_Rol == 'Asesor'){
-                                plantilla+='<td><button type="button" class="btn btn-warning" onclick="modificarV('+valor.as_Identificacion+')">Modificar</button>  ';
-                                plantilla+='<button type="button" class="btn btn-danger" onclick="eliminar('+valor.as_Identificacion+')">Eliminar</button></td>';
+                                if(rol != "Cliente"){
+                                    if(valor.as_Rol != "Administrador"){
+                                        plantilla+='<td><button type="button" class="btn btn-warning" onclick="modificarV('+valor.as_Identificacion+')">Modificar</button>  ';
+                                        plantilla+='<button type="button" class="btn btn-danger" onclick="eliminar('+valor.as_Identificacion+')">Eliminar</button></td>';                
+                                        plantilla += "</tr>";
+                                    }
                                 }
+                                
                             
-                            plantilla += "</tr>";
 
                         registros.push(plantilla);
                      }
@@ -57,10 +75,16 @@
             processData: false,
             contentType: false,
             success: function (respuesta) {
+                if(respuesta == 2){
+                    alert('eliminaste tu cuenta.')
+                    window.location.href='Index.php';
+                }
                resultadosTable();
             }
         });  
         $('#modificarAsesor').css('display','none');
+
+        
     }
 
 

@@ -17,53 +17,66 @@
 
     <body>
 
-        <ul class="nav nav-tabs justify-content-center">
+        <ul class="nav nav-tabs justify-content-center" id="barranav">
           <li class="nav-item">
             <a class="nav-link disabled" aria-current="page" id="mensaje">Bienvenido </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link"  id="encabezadoClientes" aria-current="page" href="index.php?c=Clientes">Clientes</a>
+            <a class="nav-link" id="encabezadoClientes" aria-current="page" href="index.php?c=Clientes">Clientes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="encabezadoAsesores" href="index.php?c=asesores">Asesores</a>
+            <a class="nav-link " id="encabezadoAsesores" href="index.php?c=asesores">Asesores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="index.php?c=citas">Citas</a>
+            <a class="nav-link active"  href="index.php?c=citas">Citas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?c=cerrarSesion" tabindex="-1" aria-disabled="true">Cerrar Sesion</a>
           </li>
         </ul>
-
-
-
-        <table class="table">
+    
+        <table class="table table-bordered border-primary">
           <thead>
+            <th colspan="10">Nueva Cita</th>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora inicio</th>
+              <th scope="col">Hora Fin</th>
+              <th scope="col">Asesor</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
+            <form>
+              <tr>
+                <td scope="col"><input type="date" id="fecha"  required></td> <!-- min="2021-12-07" -->
+                <td scope="col"><select class="form-select" id="HoraInicio" required></select></td>
+                <td scope="col"><select class="form-select" id="HoraFin" required></select></td>
+                <td scope="col"><input type="number" class="form-control" id="identificacionAsesor" required> 
+                  <div id="SidentificacionAsesor" class="form-text"></div></td>
+                <td scope="col"><input type="number" class="form-control" id="identificacionCliente" required>
+                  <div id="SidentificacionCliente" class="form-text"></div></td>
+                <td scope="col"><button type="button" id="btnCita" class="btn btn-primary" disabled>Crear</button></td>
+              </tr>
+              </form> 
+          </tbody>
+        </table>
+
+        <table class="table table-bordered border-dark">
+          <thead>
+            <th colspan="10">Mis citas</th>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="col">ID</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora inicio</th>
+              <th scope="col">Hora Fin</th>
+              <th scope="col">Identificacion Asesor</th>
+              <th scope="col">Identificacion Cliente</th>
+              <th scope="col">Acciones</th>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+          </thead>
+          <tbody id="misCitas">
           </tbody>
         </table>
 

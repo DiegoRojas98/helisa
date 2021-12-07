@@ -1,28 +1,26 @@
 $(document).ready(function(){
     modificandoElementos();
 
+    var css123 = {'margin':'5px'}
+    $('#barranav').css(css123);
+
 })
 
 function modificandoElementos(){
 
     $.getJSON("index.php?c=auxiliarDts", "accion=modificandoElementos",
             function (respuesta) {
-                var nombre = respuesta.nombre;
-                var identificacion= respuesta.identificacion;
-                var rol = respuesta.rol;
-                console.log(rol);
-
-                $('#mensaje').text('Bienvenido ' +nombre+ '(rol:'+ rol +')');
-                if(rol != 'Cliente'){
+                $('#mensaje').text('Bienvenido ' +respuesta.nombre+ '(rol:'+ respuesta.rol +')');
+                if(respuesta.rol != 'Cliente'){
                     $('#crearCliente').css('display','block');
                 }
-                if(rol == 'Cliente'){
+                if(respuesta.rol == 'Cliente'){
                     $('#encabezadoClientes').text('Mis datos');
-                }else if(rol == "Asesor"){
+                }else if(respuesta.rol == "Asesor"){
                     $('#encabezadoAsesores').text('Mis datos');
                 }
 
-                if(rol == "Administrador"){
+                if(respuesta.rol == "Administrador"){
                     $('#crearAsesor').css('display','block');
                 }
             }
