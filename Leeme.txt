@@ -1,0 +1,23 @@
+La aplicacion puede ser ejecutada en un navegador web,
+preferiblemente edge o chrome.
+Para su ejecucion requiere de un servidor local('simulado')
+como lo es XAMPP, y requiere que el puerto MySQL sea el numero
+3306 (de lo contrario no podra conectarse con la Base
+de datos, ocacionando un error en la aplicaion).
+
+
+Instalacion de la aplicacion
+-descomprima el archivo Helisa.zip.
+-agrege la carpeta 'Helisa' a l  ruta C:\xampp\htdocs\
+-Dentro de la carpeta 'Helisa' encontrara una archivo con 
+ nombre 'BD' (extencio SQL), este archivo debera importarlo
+ por medio de phpMyAdmin, este creara la Base de datos la cual
+ sera accedida para el funcionamiento de la aplicacaion.
+-En el navegador, dentro de la barra de direcciones ingrese
+la ruta 'localhost/helisa/' esto iniciara la aplicacion.
+
+Tambien puede descargar la carpeta con los archivos
+en GIT por medio de la URL
+https://github.com/DiegoRojas98/helisa.git
+
+
